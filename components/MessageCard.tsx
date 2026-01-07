@@ -1,0 +1,75 @@
+"use client";
+
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { X } from "lucide-react";
+import { Button } from "./ui/button";
+import { Message } from "@/model/User";
+import { toast } from "sonner";
+import axios from "axios";
+import { ApiResponse } from "@/types/ApiResponse";
+
+type MessageCardProps = {
+    message: Message;
+    onMessageDelete: (messageId: string) => void
+}
+
+const MessageCard = ({message, onMessageDelete} : MessageCardProps) => {
+
+    const handleDeleteConfirm = async () => {
+        const response = await axios.delete<ApiResponse>(`/api/delete-message/${message._id}`)
+        toast(response.data.message);
+        onMessageDelete(message._id);
+    }
+
+  return (
+    <Card>
+      <CardHeader>
+        <div className="flex justify-between">
+          <CardTitle>Date</CardTitle>
+          <div>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button className="w-2 h-5">
+                  <X className="h-5 w-5" />
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Delete this message?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Once it’s gone, the secret disappears forever.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleDeleteConfirm}>Continue</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent className="-mt-7">
+        <p>us ladke se door rehna ladki!!!</p>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default MessageCard;
