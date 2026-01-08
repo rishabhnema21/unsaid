@@ -1,5 +1,6 @@
+import MessageCarousel from "@/components/MessageCarousel";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import Link from "next/link"; 
 
 export default function Home() {
   return (
@@ -10,6 +11,10 @@ export default function Home() {
           <p className="text-3xl font-extralight mt-2">Anonymous messages for words left unspoken</p>
 
           <Link href="/sign-up"><Button className="mt-8" variant="unsaid">Get Started</Button></Link>
+
+          <div className="mt-5 w-full">
+            <MessageCarousel />
+          </div>
         </div>
         <div className="h-full">
           <img className="h-full w-full" src="/unsaidasset05.png" alt="unsaid home" />
