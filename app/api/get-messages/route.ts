@@ -8,6 +8,7 @@ import mongoose from "mongoose";
 export async function GET(request: Request) {
   await dbConnect();
   const session = await getServerSession(authOptions);
+  // console.log("Server session: ",session);
   const user: User = session?.user as User;
 
   if (!session || !session.user) {
@@ -20,8 +21,8 @@ export async function GET(request: Request) {
   const userId = new mongoose.Types.ObjectId(user._id);
   try {
     const user = await UserModel.aggregate([
-      { $match: { id: userId } },
-      { $unwind: "$messages" },
+      { $match: { _id: userId } },
+      { $unwind: { path: "$messages", preserveNullAndEmptyArrays: true } },
       { $sort: { "messages.createdAt": -1 } },
       { $group: { _id: "$_id", messages: { $push: "$messages" } } },
     ]);
@@ -29,7 +30,7 @@ export async function GET(request: Request) {
     if (!user || user.length === 0) {
       return Response.json(
         { success: false, message: "User Not Found" },
-        { status: 401 }
+        { status: 404 }
       );
     }
 
@@ -39,6 +40,6 @@ export async function GET(request: Request) {
     );
   } catch (err) {
     console.log("Some error occured in get-messages: ",err);
-    return Response.json({success: false, message: "Error occured in get-message: ",err}, {status: 500});
+    return Response.json({success: false, message: "Error occured in get-message"}, {status: 500});
   }
 }
