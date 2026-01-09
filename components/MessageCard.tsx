@@ -41,7 +41,7 @@ const MessageCard = ({message, onMessageDelete} : MessageCardProps) => {
     <Card>
       <CardHeader>
         <div className="flex justify-between">
-          <CardTitle>Date</CardTitle>
+          <CardTitle>{new Date(message.createdAt).toLocaleString()}</CardTitle>
           <div>
             <AlertDialog>
               <AlertDialogTrigger asChild>
@@ -66,7 +66,7 @@ const MessageCard = ({message, onMessageDelete} : MessageCardProps) => {
         </div>
       </CardHeader>
       <CardContent className="-mt-7">
-        <p>us ladke se door rehna ladki!!!</p>
+        <p>{message.content}</p>
       </CardContent>
     </Card>
   );

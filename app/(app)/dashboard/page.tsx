@@ -166,7 +166,7 @@ const page = () => {
               </span>
             </div>
             <div className="message-box no-scrollbar h-[65vh] w-[50vw] overflow-y-scroll overflow-x-hidden border border-black rounded-2xl">
-              <div className="w-full px-5 py-5 flex flex-col items-center space-y-5">
+              <div className="w-full px-5 py-5 flex flex-col  space-y-5">
                 {messages.length > 0 ? (
                   messages.map((message) => (
                     <MessageCard
