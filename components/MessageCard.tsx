@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -25,17 +20,24 @@ import axios from "axios";
 import { ApiResponse } from "@/types/ApiResponse";
 
 type MessageCardProps = {
-    message: Message;
-    onMessageDelete: (messageId: string) => void
-}
+  message: Message;
+  onMessageDelete: (messageId: string) => void;
+};
 
-const MessageCard = ({message, onMessageDelete} : MessageCardProps) => {
+const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
+  const handleDeleteConfirm = async () => {
+    try {
+      const messageId = message._id.toString();
+      const response = await axios.delete<ApiResponse>(
+        `/api/delete-messages/${messageId}`
+      );
 
-    const handleDeleteConfirm = async () => {
-        const response = await axios.delete<ApiResponse>(`/api/delete-message/${message._id}`)
-        toast(response.data.message);
-        onMessageDelete(message._id);
+      toast.success(response.data.message);
+      onMessageDelete(messageId);
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || "Failed to delete message");
     }
+  };
 
   return (
     <Card>
@@ -58,7 +60,9 @@ const MessageCard = ({message, onMessageDelete} : MessageCardProps) => {
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                   <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleDeleteConfirm}>Continue</AlertDialogAction>
+                  <AlertDialogAction onClick={handleDeleteConfirm}>
+                    Continue
+                  </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
