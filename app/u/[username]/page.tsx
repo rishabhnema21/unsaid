@@ -10,11 +10,39 @@ import { useParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
+import { useCompletion } from "@ai-sdk/react";
+import { useEffect, useState } from "react";
+
 
 const page = () => {
   const params = useParams<{ username: string }>();
   const username = params.username;
   // console.log(params);
+
+  const placeholderQuestions: string[] = [
+  "What’s your secret talent no one knows about?",
+  "If you could swap lives with anyone for a day, who would it be?",
+  "What’s the weirdest food combo you secretly love?",
+  "Would you rather explore space or the deep sea?",
+  "What’s a totally random question you’d ask a stranger?"
+];
+
+  const [questions, setQuestions] = useState<string[]>(placeholderQuestions);
+
+  const { complete, completion, isLoading } = useCompletion({
+    api: "/api/suggest-messages",
+  });
+
+  useEffect(() => {
+    const splitQuestions = completion
+      .split("||")
+      .map((q) => q.trim())
+      .filter(Boolean);
+
+    if (splitQuestions.length > 0) {
+    setQuestions(splitQuestions);
+    }
+  }, [completion]);
 
   const form = useForm<z.infer<typeof messageSchema>>({
     resolver: zodResolver(messageSchema),
@@ -81,16 +109,31 @@ const page = () => {
           </div>
 
           <div className="border border-zinc-500 rounded-xl h-[75vh] w-[50vw]">
-            <h3 className="text-2xl px-3 py-2 font-semibold">
-              Hot takes from <span className="italic">unsaid</span>
-            </h3>
+            <div className="flex justify-between items-center">
+              <h3 className="text-2xl px-3 py-2 font-semibold">
+                Hot takes from <span className="italic">unsaid</span>
+              </h3>
+              <Button
+                onClick={() => {
+                  setQuestions([]);
+                  complete("");
+                }}
+                disabled={isLoading}
+                className="mr-4"
+              >
+                {isLoading ? "Generating..." : "Get suggestions"}
+              </Button>
+            </div>
 
             <div className="mt-7 flex flex-col space-y-3">
-              <div className="w-full ml-3 rounded-sm px-3 py-2 border border-zinc-700">
-                <p className="text-wrap">
-                  manjeet negi badhiya to hai na, use mera aashirvaad dena betaa
-                </p>
-              </div>
+              {questions.map((question, index) => (
+                <div
+                  key={index}
+                  className="w-3/4 ml-3 rounded-sm px-3 py-2 border border-zinc-700"
+                >
+                  <p className="text-wrap">{question}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
