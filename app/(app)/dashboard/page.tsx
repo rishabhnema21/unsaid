@@ -22,7 +22,7 @@ const page = () => {
   const [isSwitchLoading, setIsSwitchLoading] = useState(false);
 
   const handleDeleteMessage = (messageId: string) => {
-    setMessages(messages.filter((message) => message._id !== messageId));
+    setMessages(messages.filter((message) => message._id.toString() !== messageId));
   };
 
   const { data: session } = useSession();
@@ -112,10 +112,6 @@ const page = () => {
     toast("Copied!!!");
   };
 
-  const handleMessageDelete = (messageId: string) => {
-    console.log("Delete message with id:", messageId);
-  };
-
   return (
     <div className="bg-[#f8f9fa]">
       <div className="px-6 md:px-16 py-10 md:py-12">
@@ -170,9 +166,9 @@ const page = () => {
                 {messages.length > 0 ? (
                   messages.map((message) => (
                     <MessageCard
-                      key={message._id}
+                      key={message._id.toString()}
                       message={message}
-                      onMessageDelete={handleMessageDelete}
+                      onMessageDelete={handleDeleteMessage}
                     />
                   ))
                 ) : (
