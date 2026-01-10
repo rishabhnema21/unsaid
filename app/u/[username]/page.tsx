@@ -64,21 +64,21 @@ const page = () => {
 
   return (
     <main className="bg-[#f8f9fa] md:h-screen">
-      <div className="py-14 px-14">
-        <h3 className="text-3xl font-bold">
+      <div className="py-9 md:py-14 px-6 md:px-14">
+        <h3 className="text-3xl text-center md:text-start font-bold">
           Got something <span className="italic font-semibold">unsaid</span> for{" "}
           <span className="text-zinc-700 font-extrabold">{username}</span>?
         </h3>
-        <p className="text-2xl font-light">Say it here. Stay anonymous.</p>
+        <p className="text-xl text-center md:text-start md:text-2xl font-light">Say it here. Stay anonymous.</p>
 
-        <div className="flex">
-          <div className="mt-12 w-[50vw]">
+        <div className="flex flex-col md:flex-row">
+          <div className="mt-8 md:mt-12 w-full text-center md:text-start md:w-[50vw]">
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <Textarea
                 {...form.register("content")}
                 placeholder="Say it. They'll never know it's you!"
                 rows={15}
-                className="w-3/4 h-[30vh]"
+                className="w-full md:w-3/4 h-[30vh]"
               />
               {form.formState.errors.content && (
                 <p className="text-red-500 mt-1 text-sm">
@@ -107,8 +107,8 @@ const page = () => {
             </div>
           </div>
 
-          <div className="border border-zinc-500 rounded-xl h-[75vh] w-[50vw]">
-            <div className="flex justify-between items-center">
+          <div className="border mt-8 md:mt-0 border-zinc-500 rounded-xl h-[75vh] w-full md:w-[50vw]">
+            <div className="flex flex-col md:flex-row justify-between items-center">
               <div>
                 <h3 className="text-2xl px-3 py-2 font-semibold">
                 Hot takes from <span className="italic">unsaid</span>
@@ -138,7 +138,7 @@ const page = () => {
                       shouldValidate: true,
                     });
                   }}
-                  className="w-3/4 ml-3 cursor-pointer hover:bg-zinc-200 transition-all duration-200 ease-out rounded-sm px-3 py-2 border border-zinc-700"
+                  className="mr-3 md:w-3/4 ml-3 cursor-pointer hover:bg-zinc-200 transition-all duration-200 ease-out rounded-sm px-3 py-2 border border-zinc-700"
                 >
                   <p className="text-wrap">{question}</p>
                 </div>

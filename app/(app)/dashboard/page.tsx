@@ -118,13 +118,13 @@ const page = () => {
 
   return (
     <div className="bg-[#f8f9fa]">
-      <div className="px-16 py-12">
-        <div className="flex justify-between items-start">
+      <div className="px-6 md:px-16 py-10 md:py-12">
+        <div className="flex flex-col md:flex-row justify-between items-start">
           <div>
             <h1 className="text-4xl font-extrabold">
               Welcome <span className="text-zinc-700">{username}</span>.
             </h1>
-            <h2 className="text-2xl font-bold mt-9">
+            <h2 className="text-2xl font-bold mt-5 md:mt-9">
               Your <span className="text-zinc-700">unsaid</span> link
             </h2>
             <div className="flex items-center">
@@ -139,7 +139,7 @@ const page = () => {
               </Button>
             </div>
 
-            <div className="h-[52vh]">
+            <div className="h-[40vh] md:h-[52vh]">
               <img
                 className="h-full w-full object-cover"
                 src="/unsaidasset03.png"
@@ -149,11 +149,11 @@ const page = () => {
           </div>
 
           <div>
-            <div className="mb-5 flex justify-between">
+            <div className="mb-5 flex flex-col md:flex-row justify-between">
               <h2 className="text-2xl font-bold">
                 They <span className="text-zinc-700">finally</span> said it!
               </h2>
-              <span className="flex space-x-2 items-center">
+              <span className="flex mt-3 md:mt-0 space-x-2 items-center">
                 Accepting Messages?{" "}
                 <span className="mr-2">
                   <Switch
@@ -165,7 +165,7 @@ const page = () => {
                 </span>
               </span>
             </div>
-            <div className="message-box no-scrollbar h-[65vh] w-[50vw] overflow-y-scroll overflow-x-hidden border border-black rounded-2xl">
+            <div className="message-box no-scrollbar h-[65vh] w-full md:w-[50vw] overflow-y-scroll overflow-x-hidden border border-black rounded-2xl">
               <div className="w-full px-5 py-5 flex flex-col  space-y-5">
                 {messages.length > 0 ? (
                   messages.map((message) => (

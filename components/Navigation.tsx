@@ -12,7 +12,7 @@ const Navigation = () => {
 
   return (
     <header className="flex justify-center items-center bg-[#f8f9fa]">
-        <nav className="w-[50vw] px-5 py-1 rounded-xl shadow-lg mt-4 flex justify-between items-center">
+        <nav className="w-full md:w-[50vw] px-5 py-1 rounded-xl shadow-lg mt-4 flex justify-between items-center">
         <div className="h-15">
             <Link href="/">
                 <img className="h-full w-full" src="/Logo.png" alt="unsaid logo" />

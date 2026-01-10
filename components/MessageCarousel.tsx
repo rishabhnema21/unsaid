@@ -29,7 +29,7 @@ export function MessageCarousel() {
             <div className="p-1">
               <Card>
                 <CardContent className="flex flex-col items-center h-[10vh] w-full justify-center p-6">
-                  <span className="text-xl font-light italic">{message.content}</span>
+                  <span className="md:text-xl font-light italic">{message.content}</span>
                 </CardContent>
               </Card>
             </div>

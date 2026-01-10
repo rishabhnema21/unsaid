@@ -55,24 +55,24 @@ const page = () => {
   };
 
   return (
-    <div className="flex justify-evenly items-center min-h-screen bg-[#f8f9fa]">
+    <div className="flex flex-col md:flex-row justify-evenly items-center md:min-h-screen bg-[#f8f9fa]">
 
-      <div className="w-1/2 flex justify-center items-center">
-        <div className="h-[40vh]">
+      <div className="w-full mb-12 md:mb-0 md:w-1/2 flex flex-col md:flex-row justify-center items-center">
+        <div className="h-[17vh] md:h-[40vh]">
           <img className="h-full w-full" src="/unsaidasset01.png" alt="random" />
         </div>
-        <div className="w-1/2">
-          <h2 className="text-5xl font-bold">Let people tell you what they really think.</h2>
-          <h4 className="mt-3 text-2xl text-zinc-600 font-semibold italic">Anonymous messages. Real thoughts.</h4>
+        <div className="w-3/4 md:w-1/2">
+          <h2 className="text-2xl text-center md:text-start md:text-5xl font-bold">Let people tell you what they really think.</h2>
+          <h4 className="md:mt-3 text-base text-center md:text-start md:text-2xl text-zinc-600 font-semibold italic">Anonymous messages. Real thoughts.</h4>
         </div>
       </div>
 
-      <div className="w-1/2 theme-font max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+      <div className="w-[95vw] md:w-1/2 theme-font max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
+          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight lg:text-5xl mb-3 md:mb-6">
             Back to Unsaid.
           </h1>
-          <p className="mb-4">Sign In to continue the Mystery</p>
+          <p className="mb-2 md:mb-4">Sign In to continue the Mystery</p>
         </div>
 
         <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
