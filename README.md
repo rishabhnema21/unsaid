@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Unsaid
 
-## Getting Started
+## Anonymous Message Sharing Platform
 
-First, run the development server:
+### Project Description
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Unsaid is a lightweight and engaging platform that allows users to send
+and receive anonymous messages. After registering, each user receives a
+personalized shareable link. Anyone with the link can submit a message
+without signing up or revealing their identity. To enhance interaction,
+the platform integrates generative AI to produce five randomized, fun messages.
+Users can click any suggestion to auto-fill their message before
+submitting.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Anonymous Messaging**: Users receive messages without exposing the
+  sender's identity.
+- **Personal Shareable Link**: Each registered user gets a unique link
+  to collect messages.
+- **AI-Powered Message Suggestions**: Integrated Gemini AI for
+  generating five fun and engaging message suggestions that auto-fill
+  on click.
+- **Secure User Authentication**: Account creation and login via
+  session-based auth.
+- **Modern UI/UX**: Clean, responsive interface with theme support and
+  smooth components.
+- **Email Capability**: React Email templates and Resend support for
+  future notification workflows.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Technology Stack
 
-## Learn More
+- **Next.js 16** (App Router, server components)
+- **React 19** - **NextAuth** for secure authentication
+- **TypeScript** for type safety
+- **Mongoose** for database modeling with
+  MongoDB
+- **Tailwind CSS 4** for responsive styling
+- **AI SDK (Google + React)** for Gemini interaction
+- **Zod + React Hook Form** for robust
+  form validation
+- **Axios** for API calls
 
-To learn more about Next.js, take a look at the following resources:
+### Installation Guide
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.  Clone the repository:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    ```bash
+    git clone https://github.com/rishabhnema21/unsaid.git
+    cd unsaid
+    ```
 
-## Deploy on Vercel
+2.  Install dependencies:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    ```bash
+    npm install
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3.  Configure environment variables: Create a `.env` file with required
+    authentication, database and AI configs.
+
+4.  Run the development server:
+
+    ```bash
+    npm run dev
+    ```
+
+5.  Build for production:
+
+    ```bash
+    npm run build
+    npm start
+    ```
+
+### Thank You
+
+Thank you for exploring Unsaid. This project reflects a blend of
+creativity, modern tooling, and thoughtful user experience. Feedback,
+contributions and suggestions are always appreciated.
