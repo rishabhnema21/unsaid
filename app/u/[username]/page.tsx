@@ -13,19 +13,18 @@ import * as z from "zod";
 import { useCompletion } from "@ai-sdk/react";
 import { useEffect, useState } from "react";
 
-
 const page = () => {
   const params = useParams<{ username: string }>();
   const username = params.username;
   // console.log(params);
 
   const placeholderQuestions: string[] = [
-  "What’s your secret talent no one knows about?",
-  "If you could swap lives with anyone for a day, who would it be?",
-  "What’s the weirdest food combo you secretly love?",
-  "Would you rather explore space or the deep sea?",
-  "What’s a totally random question you’d ask a stranger?"
-];
+    "What’s your secret talent no one knows about?",
+    "If you could swap lives with anyone for a day, who would it be?",
+    "What’s the weirdest food combo you secretly love?",
+    "Would you rather explore space or the deep sea?",
+    "What’s a totally random question you’d ask a stranger?",
+  ];
 
   const [questions, setQuestions] = useState<string[]>(placeholderQuestions);
 
@@ -40,7 +39,7 @@ const page = () => {
       .filter(Boolean);
 
     if (splitQuestions.length > 0) {
-    setQuestions(splitQuestions);
+      setQuestions(splitQuestions);
     }
   }, [completion]);
 
@@ -110,9 +109,12 @@ const page = () => {
 
           <div className="border border-zinc-500 rounded-xl h-[75vh] w-[50vw]">
             <div className="flex justify-between items-center">
-              <h3 className="text-2xl px-3 py-2 font-semibold">
+              <div>
+                <h3 className="text-2xl px-3 py-2 font-semibold">
                 Hot takes from <span className="italic">unsaid</span>
               </h3>
+              <p className="px-3 text-xl font-light">Click on any of message to adding it!</p>
+              </div>
               <Button
                 onClick={() => {
                   setQuestions([]);
@@ -129,7 +131,14 @@ const page = () => {
               {questions.map((question, index) => (
                 <div
                   key={index}
-                  className="w-3/4 ml-3 rounded-sm px-3 py-2 border border-zinc-700"
+                  onClick={() => {
+                    form.setValue("content", question, {
+                      shouldDirty: true,
+                      shouldTouch: true,
+                      shouldValidate: true,
+                    });
+                  }}
+                  className="w-3/4 ml-3 cursor-pointer hover:bg-zinc-200 transition-all duration-200 ease-out rounded-sm px-3 py-2 border border-zinc-700"
                 >
                   <p className="text-wrap">{question}</p>
                 </div>
