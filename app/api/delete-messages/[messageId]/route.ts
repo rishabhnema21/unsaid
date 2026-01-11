@@ -7,10 +7,11 @@ import mongoose from "mongoose";
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { messageId: string } }
+  { params }: { params: { messageId: string } | Promise<{ messageId: string }> }
 ) {
   await dbConnect();
-  const {messageId} = await params;
+  const resolvedParams = await params;
+  const { messageId } = resolvedParams;
   const session = await getServerSession(authOptions);
   // console.log("Server session: ",session);
   const user: User = session?.user as User;
