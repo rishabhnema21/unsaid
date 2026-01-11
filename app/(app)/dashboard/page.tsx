@@ -25,7 +25,7 @@ const page = () => {
     setMessages(messages.filter((message) => message._id.toString() !== messageId));
   };
 
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const form = useForm({
     resolver: zodResolver(AcceptMessageSchema),
   });
@@ -95,13 +95,23 @@ const page = () => {
     }
   };
 
-  if (!session || !session.user) {
-    return (
-      <div className="flex justify-center items-center">
-        <h2 className="text-3xl font-bold">Please Sign In First!</h2>
-      </div>
-    );
-  }
+if (status === "loading") {
+  return (
+    <div className="flex flex-col h-[70vh] justify-center items-center">
+    <img className="h-[40%] w-auto" src="/unsaidasset02.png" alt="loading dashboard" />
+      <p className="text-xl font-medium">Loading dashboard...</p>
+    </div>
+  );
+}
+
+if (status === "unauthenticated") {
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <h2 className="text-3xl font-bold">Please Sign In First!</h2>
+    </div>
+  );
+}
+
 
   const { username } = session?.user as User;
   const baseUrl = `${window.location.protocol}//${window.location.host}`;
