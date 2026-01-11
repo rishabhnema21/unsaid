@@ -114,7 +114,7 @@ if (status === "unauthenticated") {
 
 
   const { username } = session?.user as User;
-  const baseUrl = `${window.location.protocol}//${window.location.host}`;
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL!;
   const profileUrl = `${baseUrl}/u/${username}`;
 
   const copyToClipboard = () => {
